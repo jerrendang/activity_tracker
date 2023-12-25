@@ -17,14 +17,15 @@ module.exports = {
     seederStorage: 'sequelize'
   },
   production: {
-    use_env_variable: db_url,
+    // use_env_variable: db_url,
+    host: host,
     dialect: 'postgres',
-    seederStorage: 'sequelize',
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false
-      }
-    }
+    // seederStorage: 'sequelize',
+    // dialectOptions: {
+    //   ssl: {
+    //     require: true,
+    //     rejectUnauthorized: false
+    //   }
+    // }
   }
 }
