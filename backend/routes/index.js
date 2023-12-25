@@ -9,30 +9,7 @@ router.get('/hello/world', (req, res) => {
     res.send('Hello World!');
 })
 
-// serving production build
-if (process.env.NODE_ENV === 'production'){
-    const path = require('path');
-
-    // serve index.html at "/"
-    router.get('/', (req, res) => {
-        res.cookie('XSRF-Token', req.csrfToken());
-        return res.sendFile(
-            path.resolve(__dirname + '../../frontend', 'build', 'index.html')
-        )
-    });
-
-    // Serve the static assets in frontend
-    router.use(express.static(path.resolve('../frontend/build')));
-
-    // Serve index.html at all other routes NOT strating with /api
-    router.get(/^(?!\/?api).*/, (req, res) => {
-        res.cookie('XSRF-TOKEN', req.csrfToken());
-        return res.sendFile(
-            path.resolve(__dirname, '../../frontend', 'build', 'index.html')
-        );
-    });
-}
-else{ // env !== production
+if (process.env.NODE_ENV !== 'production'){ // env !== production
     // adding XSRF token cookie
     router.get('/api/csrf/restore', (req, res) => {
         res.cookie('XSRF-Token', req.csrfToken());
