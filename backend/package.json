@@ -9,7 +9,7 @@
     "sequelize-cli": "sequelize-cli",
     "start": "per-env",
     "start:development": "nodemon -r dotenv/config ./bin/www",
-    "start:production":"sequelize db:migrate && node ./bin/www"
+    "start:production":"sequelize db:migrate WORKDIR ./app && node ./bin/www"
   },
   "dependencies": {
     "bcryptjs": "",
