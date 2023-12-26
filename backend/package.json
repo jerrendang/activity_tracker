@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prebuild": "sequelize db:migrate",
     "test": "echo \"Error: no test specified\" && exit 1",
     "sequelize": "sequelize",
     "sequelize-cli": "sequelize-cli",
     "start": "per-env",
     "start:development": "nodemon -r dotenv/config ./bin/www",
-    "start:production":"sequelize db:migrate --config /opt/render/project/src/backend/config/index.js && node ./bin/www"
+    "start:production":"node ./bin/www"
   },
   "dependencies": {
     "bcryptjs": "",
