@@ -1,0 +1,9 @@
+.navigation *:hover *{
+    cursor: pointer;
+    color: #a0deff;
+    fill: #a0deff;
+}
+
+.navigation *{
+    margin-left: 1.5em;
+}

@@ -4,8 +4,16 @@ const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth')
 const { User } = require('../../db/models');
 const sessionRouter = require('./session');
 const usersRouter = require('./users');
+const activityRouter = require('./activity');
+const exerciseRouter = require('./exercise');
+const exerciseRecordRouter = require('./exercise_records');
+const recentRouter = require('./recent');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
+router.use('/activity', activityRouter);
+router.use('/exercise', exerciseRouter);
+router.use('/exercise_record', exerciseRecordRouter);
+router.use('/recent', recentRouter);
 
 module.exports = router;

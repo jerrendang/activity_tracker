@@ -20,7 +20,7 @@ const validateLogin = [
     handleValidationErrors
 ]
 
-router.get('/', restoreUser, asyncHandler((req, res, next) => {
+router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
     const { user } = req;
 
     if (user){

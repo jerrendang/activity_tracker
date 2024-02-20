@@ -1,0 +1,24 @@
+tr:nth-child(even){
+    background-color: rgba(0,0,0, .05);
+}
+
+tbody tr:nth-child(n):hover {
+    background-color: rgba(160,222,255, 0.15);
+    cursor: pointer;
+}
+
+.titleText {
+    margin-bottom: 20px !important;
+}
+
+table * {
+    font-size: theme('fontSize.text');
+}
+
+th{
+    font-size: theme('fontSize.label')
+}
+
+td{
+    text-align: center;
+}

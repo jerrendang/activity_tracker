@@ -1,0 +1,70 @@
+/* TODO site wide styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    /* text-align: center !important; */
+    margin: auto !important;
+}
+
+*:focus{
+    outline: solid theme('colors.blue');
+}
+
+body{
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: .1em;
+    color: black;
+}
+
+select {
+    border-radius: 3px;
+    border-width: .5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, .2);
+    margin: 0 !important;
+    font-size: .8em;
+    height: 1.7em;
+}
+
+select:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,.1);
+}
+
+input {
+    border-width: .5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, .2);
+    margin: 0 !important;
+    font-size: .75em;
+    height: 2.25em;
+}
+
+textarea {
+    border-width: .5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, .2);
+    margin: 0 !important;
+    font-size: .75em;
+    height: 10em;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button{
+    background: #a0deff;
+    color: white;
+    padding: .8em;
+    border-radius: 5px;
+    letter-spacing: .09em;
+    font-size: .70em;
+}
+
+button:hover{
+    opacity: .8
+}

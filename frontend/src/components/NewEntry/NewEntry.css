@@ -1,0 +1,38 @@
+.activityButton{
+    transition: all .2s;
+}
+
+.newActivity{
+    transition: all .2s;
+}
+
+.newEntry *{
+    margin: 0 !important;
+}
+
+.titleText{
+    margin-bottom: 20px !important;
+}
+
+form *{
+    display: flex;
+    flex-direction: column;
+}
+
+.formArea > *{
+    margin-bottom: 40px !important;
+}
+
+.formArea > * *{
+    margin-bottom: 10px !important;
+}
+
+label{
+    width: fit-content;
+    font-size: .75em;
+}
+
+.exerciseTab > *{
+    margin: 0 !important;
+    padding: 10px;
+}
