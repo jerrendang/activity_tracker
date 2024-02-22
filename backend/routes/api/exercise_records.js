@@ -11,6 +11,7 @@ router.get('/activityRecord/:userID/:timeSpan', asyncHandler(async (req, res, ne
 
     const records = await User_activity.findAll({
         where: {
+            user_id: userID,
             createdAt: {
                 [Op.gte]:moment().subtract(parseInt(timeSpan), 'days').toDate()
             }
@@ -27,7 +28,8 @@ router.get('/:exerciseID/:userID', asyncHandler(async (req, res, next) => {
         where: {
             exercise_id: exerciseID,
             user_id: userID
-        }
+        },
+        order: [['createdAt', 'ASC']]
     })
 
     return res.json({records});

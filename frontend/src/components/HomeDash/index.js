@@ -77,8 +77,8 @@ const HomeDash = () => {
     const dispatch = useDispatch();
     
     const [isLoaded, setLoaded] = useState(false);
-    const [selectedActivity, setActivity] = useState();
-    const [selectedExercise, setExercise] = useState();
+    const [selectedActivity, setSelectedActivity] = useState();
+    const [selectedExercise, setSelectedExercise] = useState();
 
     const [weeked, setWeeked] = useState(false);
     const [monthed, setMonthed] = useState(false);
@@ -94,8 +94,7 @@ const HomeDash = () => {
     const mostRecentRecord = useSelector(state => state.recent.mostRecent);
 
     const activitySelection = ['Year', 'Month', 'Week'];
-    const [activityOption, setActivityOption] = useState(0);
-    const [muscleGroupOption, setMuscleGroupOption] = useState(0);
+    const [activityOption, setActivityOption] = useState(-1);
     const daysInMonth = moment((date.getMonth() + 1).toString().padStart(2, '0'), 'MM').daysInMonth();
 
     const [days, setDays] = useState({ 'Sunday': 0, 'Monday': 0, 'Tuesday': 0, 'Wednesday': 0, 'Thursday': 0, 'Friday': 0, 'Saturday': 0 })
@@ -112,14 +111,21 @@ const HomeDash = () => {
     const monthsOfYear = ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.']
 
     const activityLabel = {
+        [-1]: {},
         0: months ? months : {},
         1: dayNums ? dayNums: {},
         2: days ? days: {}
     }
+
+    const [muscleGroupOption, setMuscleGroupOption] = useState(-1);
+
+
     // also get the exercise records
     // dispatch(getRecord(exercise.id, user.id))
-    const populateData = () => {
+    const populateActivityData = () => {
         switch (activityOption) {
+            case -1:
+                break;
             case 2: // week
                 return Object.values(days);
             case 1: // month
@@ -133,11 +139,25 @@ const HomeDash = () => {
         labels: Object.keys(activityLabel[activityOption]),
         datasets: [
             {
-                label: Object.keys(activityLabel[activityOption]),
-                data: populateData(),
+                label: '',
+                data: populateActivityData(),
                 borderColor: 'rgb(53, 162, 235)',
                 backgroundColor: 'rgba(53, 162, 235, 0.5)',
                 fill: true,
+            },
+        ],
+    };
+
+    const performanceData = {
+        // labels: records.map((record) => record.createdAt.split('T')[0]),
+        labels: records.map(() => ''),
+        datasets: [
+            {
+                label: '',
+                data: records.map((record) => record.reps),
+                borderColor: 'rgb(53, 162, 235)',
+                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+                fill: false,
             },
         ],
     };
@@ -151,13 +171,13 @@ const HomeDash = () => {
     useEffect(() => {
         if (selectedActivity){
             dispatch(getExercises(selectedActivity.id))
-            dispatch(resetRecord());
+            // dispatch(resetRecord());
         }
     }, [selectedActivity])
 
     useEffect(() => {
         if (selectedExercise){
-            dispatch(getRecord(selectedExercise.id))
+            dispatch(getRecord(selectedExercise.id, user.id))
         }
     }, [selectedExercise])
 
@@ -221,7 +241,7 @@ const HomeDash = () => {
         <>
         {
             isLoaded && (
-                <div className='flex flex-row bg-[white]
+                <div className='flex flex-row bg-[white] !mt-[10px]
                 lg:w-[80vw]'>
                     <div className='userBox text-text w-fit h-fit flex flex-col rounded-lg border-[1px] border-[rgba(0,0,0,.1)] p-[20px]'>
                         <div className='flex flex-col items-center justify-center'>
@@ -239,14 +259,15 @@ const HomeDash = () => {
                         </div>
                         <div className='text-label justify-center items-center h-fit'>
                             <span>Last Activity</span><br/>
-                                <span><span className='text-label'>{mostRecentRecord.title}</span> • {mostRecentRecord ? `
+                                <span><span className='text-label'>{mostRecentRecord ? mostRecentRecord.title:''}</span> • {mostRecentRecord ? `
                                 ${mostRecentRecord.createdAt.split('T')[0].split('-')[1]}/${mostRecentRecord.createdAt.split('T')[0].split('-')[2]}/${mostRecentRecord.createdAt.split('T')[0].split('-')[0]}
                             `: 'No recorded activity yet'}</span>
                         </div>
                     </div>
                     <div className='dash w-fit'>
-                        <div className='text-title'>Dashboard</div>
+                        {/* <div className='text-title'>Dashboard</div> */}
                         <div className='activity'>
+                            <div className='text-heading !mb-[10px]'>All Activity</div>
                             <div className='selection'>
                                 {
                                     activitySelection.map((option, idx) => (
@@ -263,7 +284,7 @@ const HomeDash = () => {
                                     data={activityData}
                                     options={{
                                         responsive: true,
-                                        maintainAspectRatio: false,
+                                        maintainAspectRatio: true,
                                         plugins: {
                                             legend: {
                                                 display: false
@@ -277,10 +298,14 @@ const HomeDash = () => {
                             </div>
                         </div>
                         <div className='progress'>
+                            <div className='text-heading !mb-[10px]'>Performance</div>
                             <div className='selection'>
                                 {
                                     activities.map((activity, idx) => (
-                                        <div key={idx} className={`${muscleGroupOption === idx ? 'selected': ''} text-label`} onClick={e => setMuscleGroupOption(idx)}>
+                                        <div key={idx} className={`${muscleGroupOption === idx ? 'selected': ''} text-label`} onClick={e => {
+                                            setSelectedActivity(activities[idx])
+                                            setMuscleGroupOption(idx)
+                                        }}>
                                             {
                                                 activity.name
                                             }
@@ -288,11 +313,44 @@ const HomeDash = () => {
                                     ))
                                 }
                             </div>
-                            <select>
-
+                            <select className='w-[25%] !mt-[10px]' onChange={(e) => {
+                                setSelectedExercise(JSON.parse(e.target.value))
+                            }}>
+                                <option></option>
+                                {
+                                    exercises && (
+                                        exercises.map((exercise, idx) => {
+                                            return (<option key={idx} value={JSON.stringify(exercise)}>{exercise.name}</option>)
+                                        })
+                                    )
+                                }
                             </select>
                             <div>
-                                {/* <Line /> */}
+                                <Line 
+                                    className='!m-0 !mt-[10px]'
+                                    options={{
+                                        responsive: true,
+                                        maintainAspectRatio: true,
+                                        plugins: {
+                                            legend: {
+                                                display: false
+                                            },
+                                            title: {
+                                                display: false,
+                                            }
+                                        },
+                                        animations: {
+                                            tension: {
+                                                duration: 3000,
+                                                easing: 'linear',
+                                                from: .2,
+                                                to: -.2,
+                                                loop: true
+                                            }
+                                        },
+                                    }}
+                                    data={performanceData}
+                                />
                             </div>
                         </div>
                     </div>

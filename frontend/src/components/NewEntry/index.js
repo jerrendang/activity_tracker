@@ -25,6 +25,8 @@ const NewEntry = () => {
     const [repTracker, setRepTracker] = useState({});
     const [newExerciseInput, setNewExerciseInput] = useState(false);
     const [newExerciseName, setNewExerciseName] = useState('');
+    const [newMuscleGroupInput, setNewMuscleGroupInput] = useState(false);
+    const [newMuscleName, setNewMuscleName] = useState('');
 
     const chosenActivity = useSelector(state => state.activity.activeActivity);
     const chosenExercises = useSelector(state => state.exercise.exercises);
@@ -83,6 +85,16 @@ const NewEntry = () => {
         }
     }
 
+    const handleNewMuscle = (e) => {
+        e.preventDefault();
+        if (newMuscleName){
+            dispatch(newActivity(newMuscleName, user.id))
+            e.target.value = '';
+            setNewMuscleName('');
+            setNewMuscleGroupInput(false);
+        }
+    }
+
     const deleteExercise = e => {
         e.preventDefault();
     }
@@ -132,7 +144,15 @@ const NewEntry = () => {
                                                 })
                                             }
                                         </select>
+                                        <div className={`${newMuscleGroupInput ? 'flex' : 'hidden'}`}>
+                                            <input type='text' className='w-[50%]' placeholder=' New muscle group name'
+                                                onChange={(e) => setNewMuscleName(e.target.value)}></input>
+                                            <button className='bg-blue w-fit' onClick={e => handleNewMuscle(e)}>
+                                                Create
+                                            </button>
+                                        </div>
                                         <div className='text-blue text-[.8em] hover:opacity-[.7] hover:cursor-pointer'
+                                        onClick={e => setNewMuscleGroupInput(true)}
                                         >
                                             + Create new muscle group
                                         </div>
@@ -219,41 +239,6 @@ const NewEntry = () => {
                                         </textarea>
                                     </div>
                                 </div>
-                            </form>
-                            {/* ///////////////////////////////////////////////////////////////////////////////////// */}
-                            <div>------------------------------------------------------------------------------------------------</div>
-                            <div className='flex flex-row flex-wrap items-center justify-center 
-                            lg:w-[30vw]'>
-                                {
-                                    isLoaded && userActivities.map((activity, idx) => (
-                                        <div key={idx} className='activityButton lg:m-[5px] text-[1.2em] pl-[5px] pr-[5px] text-[#000000] flex flex-row items-center justify-center bg-[rgba(256,256,256,.6)] hover:bg-[rgba(256,256,256,.8)] rounded-full'>
-                                            <Link to='/activityPage' onClick={e => dispatch(activeActivity(activity))}>
-                                                {activity.name}
-                                            </Link>
-                                        </div>
-                                    ))
-                                    
-                                }
-                            </div>
-
-                            <form
-                                onSubmit={(e) => handleNewActivity(e)}
-                                className='text-[#000000] flex flex-col items-start mt-[30px]'
-                            >
-                                <label htmlFor='newActivity' className='text-[.8em]'>
-                                    New Activity
-                                </label>
-                                <input type='text' 
-                                    onChange={e => setNewActivityName(e.target.value)}
-                                    id='newActivity'
-                                    className='rounded bg-[black] mb-[5px]'
-                                />
-                                <button
-                                    type='submit'
-                                    className='newActivity rounded-full p-[5px] bg-[rgba(256,256,256,.5)] hover:cursor-pointer hover:bg-[rgba(256,256,256,.8)] text-[.8em]'
-                                >
-                                    Submit
-                                </button>
                             </form>
                         </div>
                     </>

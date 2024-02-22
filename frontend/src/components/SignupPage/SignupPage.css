@@ -11,5 +11,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
 
+.signupForm > * {
+    padding-bottom: 10px
 }

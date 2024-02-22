@@ -3,6 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face{
+    font-family: fa-duotone;
+    src: url('./assets/fonts/fa-duotone-900.woff2')
+}
+
 * {
     /* text-align: center !important; */
     margin: auto !important;

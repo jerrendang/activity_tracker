@@ -20,10 +20,13 @@ module.exports = {
       'red': '#C72C41',
       'orange': '#EE4540',
       'white': '#FCF5ED',
+      'yellow': '#FEDC56',
+      'peach': '#FFDBAB'
     },
     extend: {},
     fontSize: {
       'title': '2.1em',
+      'heading':'1em',
       'label': '.80em',
       'text': '.75em'
     }

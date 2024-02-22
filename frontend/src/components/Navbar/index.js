@@ -14,18 +14,18 @@ const Navbar = () => {
 
     return (
         <div className='z-[2] top-0 sticky bg-[rgba(255,255,255,1)] shadow-sm 
-            lg:w-[100vw] lg:h-[8vh] lg:pl-[2%] lg:pr-[2%] lg:!mb-[40px]'
+            lg:w-[100vw] lg:h-[8vh] lg:pl-[2%] lg:pr-[2%]'
         >
-            <div className='flex flex-row items-center justify-center
+            <div className='flex flex-row items-center justify-between
             lg:w-[80vw] lg:h-[100%]'>
-                <Link className='logo lg:h-full lg:text-[1em] flex items-center'
+                <Link className='logo lg:h-full lg:text-[1em] flex items-center self-start !m-0'
                     to={logoLink}
                 >
                     <span>MUSCLE</span>
                     <span className='text-[#ffffff] bg-[#a0deff] rounded-lg pl-[5px] pr-[5px]'>METRICS</span>
                 </Link>
-                <div className='navigation text-[#ffffff] flex flex-row items-center justify-end
-                    lg:h-full lg:w-full lg:text-[.8em]' 
+                <div className='navigation text-[#000000] flex flex-row items-center justify-end
+                    lg:h-full lg:w-[25%] lg:text-[.8em] !m-0' 
                 >
                     {
                         user && (
@@ -55,11 +55,7 @@ const Navbar = () => {
                                     to='/landing'
                                     onClick={e => dispatch(logout())}
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
-                                        <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z" 
-                                            fill={navFill}
-                                        />
-                                    </svg>
+                                    Logout
                                 </Link>
                             </>
                         )
@@ -67,7 +63,7 @@ const Navbar = () => {
                     {
                         !user && (
                             <>
-                                <Link to='/signup' className='text-[black]'>Signup</Link>
+                                <Link to='/signup' className='text-[black] border-[rgba(0,0,0,.3)] border-[1px] px-[20px] py-[8px] rounded-md'>Signup</Link>
                             </>
                         )
                     }

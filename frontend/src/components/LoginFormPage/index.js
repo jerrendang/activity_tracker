@@ -53,8 +53,13 @@ const LoginFormPage = () => {
             </ul>
             <form
                 onSubmit={(e) => handleSubmit(e)}
+                className='loginForm text-center'
             >
-                <h2>Login</h2>
+                <div className='text-heading font-semibold'>Track your workouts and see progress.</div>
+                <div>
+                    <div className='text-text !mb-0'>Get active with Muscle Metrics.</div>
+                    <div className='text-text'>Join today for free.</div>
+                </div>
                 <div>
                     <label htmlFor='usernameEntry'>
                         Username:
@@ -62,7 +67,7 @@ const LoginFormPage = () => {
                     <input
                         id='usernameEntry'
                         onChange={(e) => setUsername(e.target.value)}
-                        placeholder='Username'
+                        className='bg-[#f9f8f5] rounded border-[1px]'
                     >
                     </input>
                 </div>
@@ -71,9 +76,9 @@ const LoginFormPage = () => {
                         Password:
                     </label>
                     <input
-                    id='passwordEntry'
+                        id='passwordEntry'
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder='Password'
+                        className='bg-[#f9f8f5] rounded border-[1px]'
                     >
                     </input>
                 </div>

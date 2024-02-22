@@ -27,55 +27,57 @@ const SignupPage = () => {
                 return errs
             })
             .then(errs => setErrors(errs))
-        
-        e.target.reset();
-        console.log(errors)
-        if (!errors){
-            history.push('/');
-        }
+            .then(() => {
+                e.target.reset();
+                if (errors.length < 1) {
+                    history.push("/");
+                }
+            })
     }
 
     return (
-        <div className='lg:w-[100vw] lg:h-[100vh] bg-red'>
-            <div className='wrapper'>
-                <form onSubmit={e => handleSubmit(e)}>
-                    <h2>Sign Up</h2>
-                    <ul>
-                        {
-                            errors && errors.map((err, idx) => (
-                                <li key={idx}>{err}</li>
-                            ))
-                        }
-                    </ul>
-                    <div>
-                        <label htmlFor='signupUsername'>Username:</label>
-                        <input
-                            id='signupUsername'
-                            onChange={e => setUsername(e.target.value)}
-                        >
-                        </input>
-                    </div>
-                    <div>
-                        <label htmlFor='signupEmail'>Email:</label>
-                        <input
-                            id='signupEmail'
-                            onChange={e => setEmail(e.target.value)}
-                        >
-                        </input>
-                    </div>
-                    <div>
-                        <label htmlFor='signupPassword'>Password:</label>
-                        <input
-                            id='signupPassword'
-                            onChange={e => setPassword(e.target.value)}
-                        >
-                        </input>
-                    </div>
-                    <button>Sign Up</button>
-                </form>
-                <div>
-                    Already have an account? <Link to='landing'>Log in</Link>
+        <div className='text-center !mt-[10px]
+        w-[100vw]'>
+            <form onSubmit={e => handleSubmit(e)} className='signupForm'>
+                <h2 className='text-center'>Sign Up</h2>
+                <ul>
+                    {
+                        errors && errors.map((err, idx) => (
+                            <li key={idx}>{err}</li>
+                        ))
+                    }
+                </ul>
+                <div className='!m-0 items-center'>
+                    <label htmlFor='signupUsername'>Username:</label>
+                    <input
+                        id='signupUsername'
+                        onChange={e => setUsername(e.target.value)}
+                        className='w-[20%]'
+                    >
+                    </input>
                 </div>
+                <div className='!m-0 items-center'>
+                    <label htmlFor='signupEmail'>Email:</label>
+                    <input
+                        id='signupEmail'
+                        onChange={e => setEmail(e.target.value)}
+                        className='w-[20%]'
+                    >
+                    </input>
+                </div>
+                <div className='!m-0 items-center'>
+                    <label htmlFor='signupPassword'>Password:</label>
+                    <input
+                        id='signupPassword'
+                        onChange={e => setPassword(e.target.value)}
+                        className='w-[20%]'
+                    >
+                    </input>
+                </div>
+                <button>Sign Up</button>
+            </form>
+            <div>
+                Already have an account? <Link to='landing' className='hover:text-blue'>Log in</Link>
             </div>
         </div>
     )
