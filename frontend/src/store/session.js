@@ -80,7 +80,7 @@ export const restoreUser = () => async (dispatch) => {
     const data = await res.json();
     dispatch(restoreSession(data.user));
 
-    return res;
+    return data;
 }
 
 // const initialState = {
