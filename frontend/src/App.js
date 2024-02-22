@@ -30,7 +30,7 @@ function App() {
     // loading
     dispatch(restoreUser())
       .then(() => setIsLoaded(true))
-      .catch((err) => console.error(err))
+      .catch((err) => console.log(err))
   }, [dispatch])
   // connect the actvities to user
 
