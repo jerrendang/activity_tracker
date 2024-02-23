@@ -12,10 +12,10 @@ export const csrfFetch = async (url, options = {}) => {
 
     console.log('/////////////////////////////////////////////////////////')
     console.log('url:', url)
+    console.log('options', options)
     console.log('/////////////////////////////////////////////////////////')
 
     const res = await fetch(url, options);
-
 
     console.log(res);
 
