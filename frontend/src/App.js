@@ -29,7 +29,7 @@ function App() {
   useEffect(() => {
     // loading
     dispatch(restoreUser())
-      .then(() => setIsLoaded(true))
+      .then((res) => setIsLoaded(true))
   }, [dispatch])
   // connect the actvities to user
 
