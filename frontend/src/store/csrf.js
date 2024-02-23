@@ -10,6 +10,10 @@ export const csrfFetch = async (url, options = {}) => {
         options.headers['XSRF-Token'] = Cookies.get('XSRF-Token');
     }
 
+    console.log('/////////////////////////////////////////////////////////')
+    console.log('url:', url)
+    console.log('/////////////////////////////////////////////////////////')
+
     const res = await fetch(url, options);
 
     if (res.status >= 400) throw res;
