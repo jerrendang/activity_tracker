@@ -12,12 +12,11 @@ export const csrfFetch = async (url, options = {}) => {
 
     console.log('/////////////////////////////////////////////////////////')
     console.log('url:', url)
-    console.log('options', options)
+    url = process.env.NODE_ENV === 'production' ? 'https://activity-tracker-app-uty0.onrender.com' + url : 'http://localhost:8000' + url
+    console.log('url:', url)
     console.log('/////////////////////////////////////////////////////////')
 
     const res = await fetch(url, options);
-
-    console.log(res);
 
     if (res.status >= 400) throw res;
 
