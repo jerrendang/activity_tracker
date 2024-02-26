@@ -24,16 +24,14 @@ const LoginFormPage = () => {
             credential: username,
             password
         }))
-            .catch(async res => await res.json())
+            .then(async res => await res.json())
             .then(data => data.errors)
-            .then(errors => setErrors(errors));
-            
-        e.target.reset()
-        setUsername('');
-        setPassword('');
-        if (errors.length <= 0){
-            navigate('/');
-        }
+            .then(data => {
+                if (errors.length <= 0){
+                    navigate('/')
+                }
+            })
+            .catch(errors => setErrors(errors));
     }
 
     return (
