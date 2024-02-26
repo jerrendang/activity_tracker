@@ -4,7 +4,7 @@ export const csrfFetch = async (url, options = {}) => {
     options.method = options.method || 'GET';
     options.headers = options.headers || {};
 
-    options.headers['Access-Control-Allow-Origin'] = 'https://muscle-metrics.onrender.com';
+    // options.headers['Access-Control-Allow-Origin'] = 'https://muscle-metrics.onrender.com';
 
     if (options.method.toUpperCase() !== 'GET'){
         options.headers['Content-Type'] = 
