@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { allActivity, activeActivity, newActivity } from '../../store/activity';
 import { getExercises, newExercise } from '../../store/exercise';
@@ -12,9 +12,9 @@ import './NewEntry.css';
 const NewEntry = () => {
     const userActivities = useSelector(state => state.activity.activities); // array of activity names
     const user = useSelector(state => state.session.user);
-    const history = useHistory();
+    const navigate = useNavigate();
     if (!user) {
-        history.push('/landing')
+        navigate('/landing');
     }
     const dispatch = useDispatch();
 

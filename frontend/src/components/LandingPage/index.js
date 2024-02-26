@@ -9,7 +9,6 @@ import image4 from '../../assets/image4.jpg';
 
 const LandingPage = () => {
     const svgSize = 'h-[100px]'
-    console.log(image1)
     return (
         <div className='relative flex flex-row
         h-[100vh]'>

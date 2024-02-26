@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { csrfFetch } from '../../store/csrf';
 
 import './RecentActivity.css';
@@ -14,10 +14,10 @@ const RecentActivity = () => {
     const numResults = 20;
 
     const user = useSelector(state => state.session.user);
-    const history = useHistory();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     if (!user){
-        history.push('/landing')
+        navigate('/landing');
     }
 
     const recent = useSelector(state => state.recent.records);

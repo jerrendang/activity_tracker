@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
@@ -28,7 +28,8 @@ function App() {
 
   useEffect(() => {
     // loading
-    dispatch(restoreUser()).then(() => setIsLoaded(true))
+    dispatch(restoreUser())
+      .then((res) => {setIsLoaded(true)})
   }, [dispatch])
   // connect the actvities to user
 
@@ -38,24 +39,26 @@ function App() {
         isLoaded && (
           <div className='relative'>
             <Navbar />
-            <Route path='/landing'>
-              <LandingPage />
-            </Route>
-            <Route path='/signup'>
-              <SignupPage />
-            </Route>
-            <Route path='/activityPage'>
-              <ActivityPage />
-            </Route>
-            <Route path='/newEntry'>
-              <NewEntry />
-            </Route>
-            <Route path='/recent'>
-              <RecentActivity />
-            </Route>
-            <Route exact path='/'>
-              <HomeDash />
-            </Route>
+            <Routes>
+              <Route path='/landing' element={<LandingPage />}>
+                
+              </Route>
+              <Route path='/signup' element={<SignupPage />}>
+                
+              </Route>
+              <Route path='/activityPage' element={<ActivityPage />}>
+                
+              </Route>
+              <Route path='/newEntry' element={<NewEntry />}>
+                
+              </Route>
+              <Route path='/recent' element={<RecentActivity />}>
+                
+              </Route>
+              <Route exact path='/' element={<HomeDash />}>
+                
+              </Route>
+            </Routes>
             {/* <Route exact path='/'>
               <Home />
             </Route> */}
