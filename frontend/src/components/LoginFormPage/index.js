@@ -20,18 +20,19 @@ const LoginFormPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
+
         dispatch(login({
             credential: username,
             password
         }))
-            .then(async res => await res.json())
-            .then(data => data.errors)
-            .then(data => {
-                if (errors.length <= 0){
+            .then(async res => {
+                if (res.ok){
                     navigate('/')
                 }
+                return await res.json();
             })
-            .catch(errors => setErrors(errors));
+            .then(data => data.errors)
+            .then(errors => setErrors(errors));
     }
 
     return (
@@ -43,7 +44,7 @@ const LoginFormPage = () => {
             }
             <ul>
                 {
-                    errors && 
+                    (errors.length > 0) && 
                     errors.map((err, id) => {
                         return (
                             <li key={id}>{err}</li>
