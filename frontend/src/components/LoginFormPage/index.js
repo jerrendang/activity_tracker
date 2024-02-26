@@ -27,6 +27,7 @@ const LoginFormPage = () => {
             .catch(async res => await res.json())
             .then(data => data.errors)
             .then(errors => setErrors(errors));
+            
         e.target.reset()
         setUsername('');
         setPassword('');
