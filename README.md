@@ -10,6 +10,11 @@ Express server utilizing **cors**, **JWT**, and **Sequelize**.
 
 PostgreSQL database hosted on **Render**.
 
+Future plans of incorporating:
+  - more fitness data beyond reps and sets. (ie. Activity duration)
+  - more in depth analysis of data
+  - ChatBot to provide suggestions to user based upon current exercise level.
+
 **Home Dashboard**
 
 <img width="500" alt="image" src="https://github.com/jerrendang/activity_tracker/assets/16262549/1a0e2dee-f3f4-46a9-8a5d-afdccdbd4d1e">
