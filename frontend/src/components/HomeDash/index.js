@@ -14,7 +14,7 @@ import {
 } from "chart.js";
 import { Line, Bar } from 'react-chartjs-2';
 import { activeActivity, allActivity } from '../../store/activity';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { getExercises } from '../../store/exercise';
 import { getRecord, resetRecord, getActivityRecord } from '../../store/exercise_records';
@@ -70,10 +70,8 @@ const HomeDash = () => {
     // then select from records where exercises == selected exerciseReducer
     // format
     const user = useSelector(state => state.session.user);
-    const history = useHistory();
-    if (!user) {
-        history.push('/landing');
-    }
+    const navigate = useNavigate();
+    
     const dispatch = useDispatch();
     
     const [isLoaded, setLoaded] = useState(false);
@@ -163,10 +161,15 @@ const HomeDash = () => {
     };
 
     useEffect(() => {
-        dispatch(allActivity(user.id))
-            .then(() => dispatch(mostRecent(user.id)))
-            .then(() => setLoaded(true));
-    }, [dispatch])
+        if (!user) {
+            navigate('/landing');
+        }
+        if (user){
+            dispatch(allActivity(user.id))
+                .then(() => dispatch(mostRecent(user.id)))
+                .then(() => setLoaded(true));
+        }
+    }, [dispatch, user])
 
     useEffect(() => {
         if (selectedActivity){

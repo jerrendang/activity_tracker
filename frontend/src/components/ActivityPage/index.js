@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { getExercises, newExercise, deleteExercise } from '../../store/exercise';
 import { addRecord, countRecord, resetCount, newCount, deleteCount } from '../../store/exercise_records';
@@ -19,7 +19,7 @@ const ActivityPage = () => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleDeleteActivity = (e, activity) => {
         dispatch(deleteActivity(activity));
@@ -63,7 +63,7 @@ const ActivityPage = () => {
 
     useEffect(() => {
         if (!user || !activeActivity){
-            history.push('/');
+            navigate('/');
         }  
         dispatch(resetCount());
     }, [])

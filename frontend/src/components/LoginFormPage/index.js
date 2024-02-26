@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useNavigate, redirect } from 'react-router-dom';
 
 import { login } from '../../store/session';
 
@@ -13,7 +13,7 @@ const LoginFormPage = () => {
 
     const dispatch = useDispatch()
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const userSession = useSelector(state => state.session.user);
 
@@ -30,20 +30,21 @@ const LoginFormPage = () => {
         e.target.reset()
         setUsername('');
         setPassword('');
-        if (!errors){
-            history.push('/');
+        if (errors.length <= 0){
+            navigate('/');
         }
     }
 
     return (
         <div className='wrapper text-[black]'>  
             {
-                userSession && (
-                    <Redirect to='/' />
-                )
+                userSession && (() => {
+                    redirect('/')
+                })
             }
             <ul>
                 {
+                    errors && 
                     errors.map((err, id) => {
                         return (
                             <li key={id}>{err}</li>
@@ -52,7 +53,7 @@ const LoginFormPage = () => {
                 }
             </ul>
             <form
-                onSubmit={(e) => handleSubmit(e)}
+                onSubmit={(e) => {handleSubmit(e)}}
                 className='loginForm text-center'
             >
                 <div className='text-heading font-semibold'>Track your workouts and see progress.</div>
@@ -66,7 +67,7 @@ const LoginFormPage = () => {
                     </label>
                     <input
                         id='usernameEntry'
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={(e) => {setUsername(e.target.value)}}
                         className='bg-[#f9f8f5] rounded border-[1px]'
                     >
                     </input>
@@ -77,7 +78,7 @@ const LoginFormPage = () => {
                     </label>
                     <input
                         id='passwordEntry'
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => {setPassword(e.target.value)}}
                         className='bg-[#f9f8f5] rounded border-[1px]'
                     >
                     </input>

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { signup } from '../../store/session';
 
 import { useDispatch} from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const SignupPage = () => {
     const [username, setUsername] = useState('');
@@ -15,7 +15,7 @@ const SignupPage = () => {
 
     const dispatch = useDispatch();
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,7 +30,7 @@ const SignupPage = () => {
             .then(() => {
                 e.target.reset();
                 if (errors.length < 1) {
-                    history.push("/");
+                    navigate('/')
                 }
             })
     }
