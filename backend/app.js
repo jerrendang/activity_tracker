@@ -22,7 +22,7 @@ app.use(express.json());
 
 if (!isProduction){
     app.use(cors({
-        origin: "https://activity-tracker-app-uty0.onrender.com"
+        origin: ["https://activity-tracker-app-uty0.onrender.com", "https://muscle-metrics.onrender.com"]
     }));
 }
 
