@@ -9,6 +9,12 @@ const exerciseRouter = require('./exercise');
 const exerciseRecordRouter = require('./exercise_records');
 const recentRouter = require('./recent');
 
+const cors = require(cors);
+
+let corsOptions = {
+    origin: ['']
+}
+
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/activity', activityRouter);

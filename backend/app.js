@@ -32,15 +32,15 @@ if (isProduction){
 //     })
 // );
 
-app.use(
-    csurf({
-        cookie: {
-            secure: isProduction,
-            sameSite: isProduction && 'Lax',
-            httpOnly: true
-        }
-    })
-)
+// app.use(
+//     csurf({
+//         cookie: {
+//             secure: isProduction,
+//             sameSite: isProduction && 'Lax',
+//             httpOnly: true
+//         }
+//     })
+// )
 
 app.use(routes);
 
