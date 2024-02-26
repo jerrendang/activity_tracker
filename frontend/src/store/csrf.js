@@ -8,7 +8,7 @@ export const csrfFetch = async (url, options = {}) => {
         options.headers['Content-Type'] = 
             options.headers['Content-Type'] || 'application/json';
         options.headers['XSRF-Token'] = Cookies.get('XSRF-Token');
-        options.headers['Access-Control-Allow-Origin'] = "https://activity-tracker-app-uty0.onrender.com"
+        options.headers['Access-Control-Allow-Origin'] = "https://muscle-metrics.onrender.com"
     }
 
     url = process.env.NODE_ENV === 'production' ? 'https://activity-tracker-app-uty0.onrender.com' + url : 'http://localhost:8000' + url
