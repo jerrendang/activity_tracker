@@ -220,23 +220,25 @@ const HomeDash = () => {
                         })
                     break;
                 default: // default 0
-                    dispatch(getActivityRecord(user.id, 365))
-                        .then(() => {
-                            if (!yeared && activityRecords.length > 0){
-                                for (let i in activityRecords){
-                                    let record = activityRecords[i];
-                                    let formattedDate = record.createdAt.split('T')[0];
-                                    let tempDate = new Date(formattedDate);
-                                    if (tempDate.getFullYear() == date.getFullYear()){
-                                        months[monthsOfYear[tempDate.getMonth()]] += 1
+                    if (user){
+                        dispatch(getActivityRecord(user.id, 365))
+                            .then(() => {
+                                if (!yeared && activityRecords.length > 0){
+                                    for (let i in activityRecords){
+                                        let record = activityRecords[i];
+                                        let formattedDate = record.createdAt.split('T')[0];
+                                        let tempDate = new Date(formattedDate);
+                                        if (tempDate.getFullYear() == date.getFullYear()){
+                                            months[monthsOfYear[tempDate.getMonth()]] += 1
+                                        }
                                     }
+                                    setYeared(true);
                                 }
-                                setYeared(true);
-                            }
-                        })
+                            })
+                    }
             }
         }
-    }, [activityOption])
+    }, [activityOption, user])
 
     // reset active activity and get exercises
 
