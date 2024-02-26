@@ -21,7 +21,9 @@ app.use(cookieParser())
 app.use(express.json());
 
 if (!isProduction){
-    app.use(cors());
+    app.use(cors({
+        origin: "https://activity-tracker-app-uty0.onrender.com"
+    }));
 }
 
 
