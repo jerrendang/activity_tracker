@@ -3,11 +3,7 @@ const router = express.Router();
 const apiRouter = require('./api');
 const cors = require('cors');
 
-let corsOptions = {
-    origin: (process.env.NODE_ENV === 'production' ? "https://muscle-metrics.onrender.com": "*")
-}
-
-router.use('/api', cors(corsOptions), apiRouter)
+router.use('/api', apiRouter)
 
 router.get('/hello/world', (req, res) => {
     res.cookie('XSRF-TOKEN', req.csrfToken());

@@ -2,17 +2,12 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const cors = require('cors');
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
-
-const corsOptions = {
-    origin: process.env.NODE_ENV === 'production' ? 'https://muscle-metrics.onrender.com' : '*'
-}
 
 const validateLogin = [
     check('credential')
@@ -36,7 +31,7 @@ router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
     return res.json({});
 }))
 
-router.post('/', validateLogin, cors(corsOptions), asyncHandler( async (req, res, next) => { // login route
+router.post('/', validateLogin, asyncHandler( async (req, res, next) => { // login route
     const { credential, password} = req.body;
     const user = await User.login({credential, password});
 

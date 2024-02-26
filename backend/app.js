@@ -20,12 +20,11 @@ app.use(cookieParser())
 // json
 app.use(express.json());
 
-if (!isProduction){
+if (isProduction){
     app.use(cors({
-        origin: ["https://activity-tracker-app-uty0.onrender.com", "https://muscle-metrics.onrender.com"]
+        origin: "https://muscle-metrics.onrender.com"
     }));
 }
-
 
 // app.use(
 //     helmet.crossOriginResourcePolicy({
