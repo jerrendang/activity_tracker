@@ -77,7 +77,7 @@ const SignupPage = () => {
                 <button>Sign Up</button>
             </form>
             <div>
-                Already have an account? <Link to='landing' className='hover:text-blue'>Log in</Link>
+                Already have an account? <Link to='/landing' className='hover:text-blue'>Log in</Link>
             </div>
         </div>
     )
