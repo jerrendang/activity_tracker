@@ -25,14 +25,10 @@ const LoginFormPage = () => {
             credential: username,
             password
         }))
-            .then(async res => {
-                if (res.ok){
-                    navigate('/')
-                }
-                return await res.json();
-            })
-            .then(data => data.errors)
-            .then(errors => setErrors(errors));
+            .then(res => navigate('/'))
+            .catch(error => {
+                setErrors(error.errors)
+            });
     }
 
     return (

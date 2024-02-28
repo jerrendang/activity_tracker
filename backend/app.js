@@ -20,11 +20,10 @@ app.use(cookieParser())
 // json
 app.use(express.json());
 
-if (isProduction){
-    app.use(cors({
-        origin: "https://muscle-metrics.onrender.com"
-    }));
-}
+
+app.use(cors({
+    origin: ["https://muscle-metrics.onrender.com", "http://localhost:3000"]
+}))
 
 // app.use(
 //     helmet.crossOriginResourcePolicy({
@@ -69,7 +68,7 @@ app.use((err, req, res, next) => {
         title: err.title || 'Server Error',
         message: err.message,
         errors: err.errors,
-        stack: isProduction ? null: err.stack
+        stack: isProduction ? null: err.stack,
     })
 })
 // error handling
