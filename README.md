@@ -17,7 +17,7 @@ Future plans of incorporating:
 
 **Home Dashboard**
 
-<img width="500" alt="image" src="https://github.com/jerrendang/activity_tracker/assets/16262549/1a0e2dee-f3f4-46a9-8a5d-afdccdbd4d1e">
+<img width="500" alt="image" src="https://github.com/jerrendang/activity_tracker/assets/16262549/eb6110f3-2e0c-4857-bde3-67a28d68a54f">
 
 **New Entry Page**
 
