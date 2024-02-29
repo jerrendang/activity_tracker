@@ -35,7 +35,8 @@ export const login = ({credential, password}) => async (dispatch) => {
         body: JSON.stringify({
             credential,
             password
-        })
+        }),
+        credentials: 'include',
     });
     if (res.ok){
         const {user} = await res.json();
@@ -76,7 +77,9 @@ const restoreSession = (user) => {
 }
 
 export const restoreUser = () => async (dispatch) => {
-    const res = await csrfFetch('/api/session');
+    const res = await csrfFetch('/api/session', {
+        credentials: 'include'
+    });
     const data = await res.json();
     dispatch(restoreSession(data.user));
 }

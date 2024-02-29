@@ -22,6 +22,10 @@ const validateLogin = [
 
 router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
     const { user } = req;
+    console.log('////////////////////////////////////////////////')
+    console.log(req.headers)
+    console.log(req.headers.cookie)
+    console.log('////////////////////////////////////////////////')
 
     if (user){
         return res.json({
@@ -36,7 +40,7 @@ router.post('/', validateLogin, asyncHandler( async (req, res, next) => { // log
     const user = await User.login({credential, password});
 
     if (user){
-        await setTokenCookie(res, user);
+        setTokenCookie(res, user);
         return res.json({ user })
     }
     const err = new Error('Login failed.');

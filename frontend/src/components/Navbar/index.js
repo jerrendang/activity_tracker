@@ -13,19 +13,17 @@ const Navbar = () => {
     const dispatch = useDispatch();
 
     return (
-        <div className='z-[2] top-0 sticky bg-[rgba(255,255,255,1)] shadow-sm 
-            lg:w-[100vw] lg:h-[8vh] lg:pl-[2%] lg:pr-[2%]'
+        <div className='z-[2] top-0 sticky bg-[rgba(255,255,255,1)] shadow-sm pl-[2%] pr-[2%] h-[8vh] w-[100vw]'
         >
-            <div className='flex flex-row items-center justify-between
-            lg:w-[80vw] lg:h-[100%]'>
-                <Link className='logo lg:h-full lg:text-[1em] flex items-center self-start !m-0'
+            <div className='flex flex-row items-center justify-between w-[80vw] h-[100%]'>
+                <Link className='logo h-full lg:text-[1em] flex items-center self-start !m-0'
                     to={logoLink}
                 >
                     <span>MUSCLE</span>
                     <span className='text-[#ffffff] bg-[#a0deff] rounded-lg pl-[5px] pr-[5px]'>METRICS</span>
                 </Link>
                 <div className='navigation text-[#000000] flex flex-row items-center justify-end
-                    lg:h-full lg:w-[25%] lg:text-[.8em] !m-0' 
+                    h-full w-[25%] text-[.8em] !m-0 lg:justify-end min-w-[200px]' 
                 >
                     {
                         user && (

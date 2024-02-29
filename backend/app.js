@@ -14,16 +14,17 @@ const app = express();
 // logging requests
 app.use(morgan('dev'));
 
-// exposes req.Cookie data as req.cookies
-app.use(cookieParser())
-
 // json
 app.use(express.json());
 
+// populates req with a cookies obj
+app.use(cookieParser())
 
 app.use(cors({
-    origin: ["https://muscle-metrics.onrender.com", "http://localhost:3000"]
+    origin: ["https://muscle-metrics.onrender.com", "http://localhost:3000"],
+    credentials: true,
 }))
+
 
 // app.use(
 //     helmet.crossOriginResourcePolicy({

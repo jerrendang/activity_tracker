@@ -15,7 +15,8 @@ const setTokenCookie = (res, user) => { // sending JWT token
 
     res.cookie('token', token, {
         maxAge: expiresIn * 1000,
-        httpOnly: true,
+        httpOnly: false,
+        path: '/',
         secure: isProduction,
         sameSite: isProduction && 'Lax'
     });
@@ -25,6 +26,8 @@ const setTokenCookie = (res, user) => { // sending JWT token
 
 const restoreUser = (req, res, next) => {
     const { token } = req.cookies;
+    console.log(req.headers.cookies)
+
 
     return jwt.verify(token, secret, null, async (err, jwtPayload) => {
         if (err) {

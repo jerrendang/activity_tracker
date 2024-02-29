@@ -38,9 +38,9 @@ const LoginFormPage = () => {
                     redirect('/')
                 })
             }
-            <ul>
+            <ul className='text-red !mb-[20px]'>
                 {
-                    (errors.length > 0) && 
+                    (errors && errors.length > 0) && 
                     errors.map((err, id) => {
                         return (
                             <li key={id}>{err}</li>

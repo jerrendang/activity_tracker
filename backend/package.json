@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "bcryptjs": "",
-    "cookie-parser": "",
+    "cookie-parser": "^1.4.6",
     "cors": "",
     "csurf": "",
     "dotenv": "",

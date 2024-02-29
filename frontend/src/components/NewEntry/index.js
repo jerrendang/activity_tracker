@@ -46,6 +46,9 @@ const NewEntry = () => {
                 .then(() => dispatch(mostRecent(user.id)))
                 .then(() => setLoaded(true));
         }
+        else{
+            navigate('/landing')
+        }
     }, [dispatch, user])
 
     const resetRepTracker = () => {
@@ -113,7 +116,7 @@ const NewEntry = () => {
                 (isLoaded && user) && (
                     <>
                         <div className="newEntry relative bg-[rgba(0,0,0,0)] flex flex-col justify-center items-start overflow-hidden text-[black] font-[.5em]
-                        lg:w-[80vw]">
+                        w-[80vw] min-w-[500px]">
                             <div
                                 className='titleText text-[2.1em] font-medium
                                 '

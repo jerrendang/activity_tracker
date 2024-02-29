@@ -13,6 +13,7 @@ import NewEntry from './components/NewEntry';
 import ActivityPage from './components/ActivityPage';
 import HomeDash from './components/HomeDash';
 import RecentActivity from './components/RecentActivity';
+import Footer from './components/Footer';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,7 +30,8 @@ function App() {
   useEffect(() => {
     // loading
     dispatch(restoreUser())
-      .then((res) => {setIsLoaded(true)})
+      .then((res) => {
+        setIsLoaded(true)})
   }, [dispatch])
   // connect the actvities to user
 
@@ -37,7 +39,7 @@ function App() {
     <>
       {
         isLoaded && (
-          <div className='relative'>
+          <div className='relative w-[100%]'>
             <Navbar />
             <Routes>
               <Route path='/landing' element={<LandingPage />}>
@@ -59,9 +61,7 @@ function App() {
                 
               </Route>
             </Routes>
-            {/* <Route exact path='/'>
-              <Home />
-            </Route> */}
+            <Footer />
             <script src="https://kit.fontawesome.com/a4ec5f52e4.js" crossOrigin="anonymous"></script>
           </div>
         )

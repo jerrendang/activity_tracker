@@ -248,7 +248,8 @@ const HomeDash = () => {
             isLoaded && (
                 <div className='flex flex-row bg-[white] !mt-[10px]
                 lg:w-[80vw]'>
-                    <div className='userBox text-text w-fit h-fit flex flex-col rounded-lg border-[1px] border-[rgba(0,0,0,.1)] p-[20px]'>
+                    <div className='userBox text-text w-fit h-fit flex flex-col rounded-lg border-[1px] border-[rgba(0,0,0,.1)] p-[20px]
+                    sm:hidden lg:flex'>
                         <div className='flex flex-col items-center justify-center'>
                             <div className='pb-[5px]'>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height='100' width='100'>
@@ -269,7 +270,7 @@ const HomeDash = () => {
                             `: 'No recorded activity yet'}</span>
                         </div>
                     </div>
-                    <div className='dash w-fit'>
+                    <div className='dash w-[100%]'>
                         {/* <div className='text-title'>Dashboard</div> */}
                         <div className='activity'>
                             <div className='text-heading !mb-[10px]'>All Activity</div>
@@ -283,7 +284,7 @@ const HomeDash = () => {
                                 }
                             </div>
                             <div className='
-                            lg:h-[300px] lg:w-[500px]'>
+                            lg:h-[100%] lg:w-[100%]'>
                                 <Bar 
                                     className='!m-0 !mt-[10px]'
                                     data={activityData}

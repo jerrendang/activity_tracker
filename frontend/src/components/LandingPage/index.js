@@ -10,9 +10,10 @@ import image4 from '../../assets/image4.jpg';
 const LandingPage = () => {
     const svgSize = 'h-[100px]'
     return (
-        <div className='relative flex flex-row
+        <div className='relative flex flex-row items-center justify-center
         h-[100vh]'>
-            <div className='landingImages !m-0 h-[100%] w-[33%]'>
+            <div className='landingImages flex !m-0 h-[100%] w-[33%]
+            sm:hidden lg:block md:block'>
 
                 <div className='mainRow !m-0 h-[50%] w-[100%] flex flex-row'>
                     <div className='h-[100%] w-[50%] !m-0'>
@@ -44,7 +45,8 @@ const LandingPage = () => {
             lg:w-[33%]'>
                 <LoginFormPage />
             </div>
-            <div className='landingImages !m-0 h-[100%] w-[33%]'>
+            <div className='landingImages !m-0 h-[100%] w-[33%]
+            sm:hidden lg:block md:block'>
                 <div className='mainRow !m-0 h-[50%]'>
                     <img src={image4} alt='image4' className='h-[100%] w-[100%]'></img>
                 </div>

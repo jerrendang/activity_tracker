@@ -11,14 +11,11 @@ const RecentActivity = () => {
     const daysOfWeek = ['Sun.', 'Mon.', 'Tues.', 'Wed.', 'Thurs.', 'Fri.', 'Sat.']
     const [isLoaded, setLoaded] = useState(false);
     const [page, setPage] = useState(1);
-    const numResults = 20;
+    const numResults = 15;
 
     const user = useSelector(state => state.session.user);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    if (!user){
-        navigate('/landing');
-    }
 
     const recent = useSelector(state => state.recent.records);
 
@@ -27,21 +24,43 @@ const RecentActivity = () => {
             dispatch(getRecent(user.id, page, numResults)) // userID, page, numResults
                 .then(setLoaded(true))
         }
+        else{
+            navigate('/landing')
+        }
     }, [dispatch])
 
+    const handlePageChange = (num) => {
+        if (num === 1){
+            if (!(recent.length < numResults)){
+                setPage(page + 1)
+            }
+        }
+        else{ // num === -1
+            if (page > 1){
+                setPage(page - 1)
+            }
+        }
+    }
+
+    useEffect(() => {
+        if (isLoaded){
+            dispatch(getRecent(user.id, page, numResults))
+            console.log(page)
+        }
+    }, [page])
 
     return (
         <>
             {
                 isLoaded && (
-                    <div className='text-[black]
-                    lg:w-[80vw] lg:h-auto'>
+                    <div className='text-[black] flex flex-col
+                    w-[80vw] h-auto min-w-[800px]'>
                         <div className='text-title titleText'
                         >
                             Recent Activity
                         </div>
                         <table className='text-[black]
-                        lg:w-[100%]'
+                        w-[100%]'
                         >
                             <thead className='border-b-[1px] border-b-[rgba(0,0,0,.1)] bg-[rgba(0,0,0,.07)]
                                 lg:h-[2em]'>
@@ -105,6 +124,27 @@ const RecentActivity = () => {
                                 }
                             </tbody>
                         </table>
+                        <div className='flex flex-row !mt-[30px]'>
+                            <div className='hover:cursor-pointer hover:opacity-[.6]' onClick={() => {
+                                handlePageChange(-1)
+                            }}>
+                                <svg className='h-[20px] w-[20px]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                                    <path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z" 
+                                        fill='rgba(0,0,0,1)'
+                                    />
+                                </svg>
+                            </div>
+                            <div className='p-[20px]'>{page}</div>
+                            <div className='hover:cursor-pointer hover:opacity-[.6]' onClick={() => {
+                                handlePageChange(1)
+                            }}>
+                                <svg className='h-[20px] w-[20px]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                                    <path d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z" 
+                                        fill='rgba(0,0,0,1)'
+                                    />
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                 )
             }
