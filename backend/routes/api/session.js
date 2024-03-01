@@ -22,10 +22,6 @@ const validateLogin = [
 
 router.get('/', restoreUser, asyncHandler(async (req, res, next) => {
     const { user } = req;
-    console.log('////////////////////////////////////////////////')
-    console.log(req.headers)
-    console.log(req.headers.cookie)
-    console.log('////////////////////////////////////////////////')
 
     if (user){
         return res.json({
