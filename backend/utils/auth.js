@@ -26,7 +26,7 @@ const setTokenCookie = (res, user) => { // sending JWT token
 
 const restoreUser = (req, res, next) => {
     const { token } = req.cookies;
-    console.log(req.headers.cookies)
+    console.log(req.cookies)
 
 
     return jwt.verify(token, secret, null, async (err, jwtPayload) => {
