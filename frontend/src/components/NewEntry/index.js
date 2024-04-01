@@ -126,7 +126,7 @@ const NewEntry = () => {
                             <form className='w-[80%] flex flex-row' onSubmit={e => handleSubmitEntry(e)}>
                                 <div className='formArea overflow-visible
                                 lg:w-[60%]'>
-                                    <div>
+                                    <div className='pb-[20px]'>
                                         <label htmlFor='titleInput' className=''>Title</label>
                                         <input type='text' className='titleInput w-[50%]' placeholder=' Ex: Morning lift' onChange={(e) => setEntryTitle(e.target.value)}>
                                         </input>

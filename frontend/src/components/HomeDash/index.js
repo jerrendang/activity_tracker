@@ -270,9 +270,9 @@ const HomeDash = () => {
                             `: 'No recorded activity yet'}</span>
                         </div>
                     </div>
-                    <div className='dash w-[100%]'>
+                    <div className='dash w-[80%]'>
                         {/* <div className='text-title'>Dashboard</div> */}
-                        <div className='activity'>
+                        <div className='activity flex flex-col'>
                             <div className='text-heading !mb-[10px]'>All Activity</div>
                             <div className='selection'>
                                 {
@@ -284,7 +284,7 @@ const HomeDash = () => {
                                 }
                             </div>
                             <div className='
-                            lg:h-[100%] lg:w-[100%]'>
+                            lg:h-[100%] lg:w-[50%]'>
                                 <Bar 
                                     className='!m-0 !mt-[10px]'
                                     data={activityData}
@@ -303,7 +303,7 @@ const HomeDash = () => {
                                 />
                             </div>
                         </div>
-                        <div className='progress'>
+                        <div className='progress flex flex-col w-[100%] items-center'>
                             <div className='text-heading !mb-[10px]'>Performance</div>
                             <div className='selection'>
                                 {
@@ -331,7 +331,8 @@ const HomeDash = () => {
                                     )
                                 }
                             </select>
-                            <div>
+                            <div className='
+                                lg:h-[100%] lg:w-[50%]'>
                                 <Line 
                                     className='!m-0 !mt-[10px]'
                                     options={{
